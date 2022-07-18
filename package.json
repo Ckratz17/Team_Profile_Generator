@@ -1,0 +1,24 @@
+{
+  "name": "team_profile_generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ckratz17/Team_Profile_Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ckratz17/Team_Profile_Generator/issues"
+  },
+  "homepage": "https://github.com/Ckratz17/Team_Profile_Generator#readme",
+  "dependencies": {
+    "jest": "^28.1.3",
+    "requirer": "^0.0.4"
+  }
+}
