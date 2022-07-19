@@ -1,8 +1,13 @@
 // require all of your classes/constructors, (Manager, Engineer, Intern)
+const Employee = require("./lib/employee")
+const Engineer = require("./lib/engineer")
+const Intern = require("./lib/intern")
+const Manager = require("./lib/manager")
 // require packages needed (inquirer, path, fs)
+const fs = require(fs)
 const inquirer = require(inquirer)
 // set up an empty array for the Team Members
-const team = []
+const teamArray = []
 // set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
 
 // function for INITIALIZING ////////////////
