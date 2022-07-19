@@ -1,12 +1,12 @@
-// require all of your classes/constructors, (Manager, Engineer, Intern)
+// link to class constructors
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer")
 const Intern = require("./lib/intern")
 const Manager = require("./lib/manager")
-// require packages needed (inquirer, path, fs)
+//node modules
 const fs = require(fs)
 const inquirer = require(inquirer)
-// set up an empty array for the Team Members
+// empty array for the Team Members
 const teamArray = []
 // set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
 
@@ -16,19 +16,42 @@ function init() {
     // function for CREATING A MANAGER ///////////////
     function createManager() {
       // use inquirer
-     
-      // and prompt to ask questions
-  
-      // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
-      .then((answers) => {
-      const manager = new Manager(
+        return inquirer.prompt([
+          {
+            type: 'input',
+            name: 'name',
+            message: 'Who is the Manager?'
+          },
+          {
+            type: 'input',
+            name: 'id',
+            message: "What is the Manager's id?"
+          },
+          {
+            type: 'input',
+            name: 'email',
+            message: "What is the Manager's email?"
+          }  
+          {
+            type: 'input',
+            name: 'officeNumber',
+            message: "What is the Manager's office number?"
+          }
+        ])
+        .then(managerInput => {
+          const {name, id, email, officeNumber} = managerInput
+          // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
+          const manager = new Manager(name, id, email, officeNumber)
+  // then you will need to push this new manager to the empty team array you set up above
+          teamArray.push(manager)
+          console.log(manager)
         //send your answers here
-      );
-      // then you will need to push this new manager to the empty team array you set up above
+      
+      
       // and call the function for DETERMINING TYPE OF EMPLOYEE - we'll call it createTeam
       createTeam();
     })
-    }
+  }
   
     // function for DETERMINING TYPE OF EMPLOYEE //////////////////
     function createTeam() {
