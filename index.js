@@ -1,3 +1,4 @@
+const generateHTML = require("./util/generateHtml")
 // link to class constructors
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer")
@@ -119,6 +120,12 @@ const teamArray = []
   }
   createManager()
   .then(createEmployee)
+  .then(teamArray => {
+    return generateHTML(teamArray)
+  })
+  .then(pageHtml => {
+    return fs.writeFile(pageHtml)
+  })
   
   
   
