@@ -1,8 +1,8 @@
 // require all of your classes/constructors, (Manager, Engineer, Intern)
 // require packages needed (inquirer, path, fs)
-
+const inquirer = require(inquirer)
 // set up an empty array for the Team Members
-
+const team = []
 // set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
 
 // function for INITIALIZING ////////////////
@@ -11,6 +11,7 @@ function init() {
     // function for CREATING A MANAGER ///////////////
     function createManager() {
       // use inquirer
+     
       // and prompt to ask questions
   
       // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
