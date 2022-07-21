@@ -9,8 +9,6 @@ const fs = require('fs')
 const inquirer = require('inquirer');
 // empty array for the Team Members
 const teamArray = []
-// set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
-// function for INITIALIZING ////////////////
     // first thing you'll probably want to do is add a function for creating a manager, since that's the first thing you have to do
     // function for CREATING A MANAGER ///////////////
   const createManager = () => {
@@ -39,7 +37,7 @@ const teamArray = []
     ])
     .then(managerInput => {
       const {name, id, email, officeNumber} = managerInput
-// once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
+
       const manager = new Manager(name, id, email, officeNumber)
 // then you will need to push this new manager to the empty team array you set up above
       teamArray.push(manager)
@@ -48,9 +46,9 @@ const teamArray = []
       
       
       // and call the function for DETERMINING TYPE OF EMPLOYEE - we'll call it createTeam
-      createEmployee();
     })
   }
+    //FUNCTION FOR CREATING EMPLOYEES!!!
     function createEmployee() {
         console.log(`
         ============================
@@ -59,12 +57,14 @@ const teamArray = []
         `)
 
       return inquirer.prompt([
+        //LET THEM CHOOSE WHICH ROLE THEY WANT THEIR NEW EMPLOYEE TO HAVE
         {
           type: 'list',
           name: 'role',
           message: "What is your employee's role?",
           choices: ['Engineer', 'Intern']
         },
+        //REPEAT STEPS FROM THE MANAGER FUNCTION
         {
           type: 'input',
           name: 'name',
@@ -100,7 +100,7 @@ const teamArray = []
       .then(employeeData => {
         let {name, id, email, github, school, role, confirmAddEmployee} = employeeData
         let employee;
-
+        //THEN TAKE THE DATA AND SEPERATE THE ENGINEER FROM THE INTERN AND PUSH THE EMPLOYEE
         if(role === "Engineer"){
           employee = new Engineer (name, id, email, github)
           console.log(employee)
@@ -109,7 +109,7 @@ const teamArray = []
           console.log(employee)
         }
         teamArray.push(employee)
-        
+        //ADD EMPLOYEE TO EMPTY ARRAY
         if(confirmAddEmployee) {
           return createEmployee(teamArray)
         }else {
@@ -118,15 +118,19 @@ const teamArray = []
 
     })
   }
+  //CREATE THE MANAGER FIRST
   createManager()
+  //THEN EMPLOYEE
   .then(createEmployee)
+  //TAKE THE TEAM ARRAY AND GENERATE A HTML PAGE
   .then(teamArray => {
-    return generateHTML(teamArray)
-  })
-  .then(pageHtml => {
-    return fs.writeFile(pageHtml)
+    const htmlContent = generateHTML(teamArray)
+
+    fs.writeFile("index.html", htmlContent, (err) =>
+    err? console.log(err) : console.log("Succefully created an Team Page!")) 
   })
   
+
   
   
   
